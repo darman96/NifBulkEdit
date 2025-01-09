@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="NifBulkEdit.Ui/App.axaml" value="NifBulkEdit.Ui/NifBulkEdit.Ui.csproj" />
+        <entry key="NifBulkEdit.Ui/MainWindow.axaml" value="NifBulkEdit.Ui/NifBulkEdit.Ui.csproj" />
+        <entry key="NifBulkEdit.Ui/Views/MainWindow.axaml" value="NifBulkEdit.Ui/NifBulkEdit.Ui.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

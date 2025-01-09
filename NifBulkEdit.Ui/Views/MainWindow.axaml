@@ -1,0 +1,81 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:NifBulkEdit.Ui.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
+        x:Class="NifBulkEdit.Ui.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Nif Bulk Texture Replacer"
+        Width="350" Height="450"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+
+        <DockPanel Margin="12" LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Margin="0 0 0 12" Spacing="12">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Command="{Binding SelectFilesCommand}">
+                        Select Files
+                    </Button>
+                    <Button Command="{Binding SelectOutputDirectoryCommand}">
+                        Select Output
+                    </Button>
+                </StackPanel>
+                <Separator />
+                <Grid ColumnDefinitions="80,*,auto">
+                    <Label Grid.Column="0">Replace </Label>
+                    <TextBox Grid.Column="1" Text="{Binding Find}" />
+                    <CheckBox Grid.Column="2" Margin="6 0 0 0" IsChecked="{Binding MatchCase}">Match Case</CheckBox>
+                </Grid>
+                <Grid ColumnDefinitions="80,*">
+                    <Label Grid.Column="0">With </Label>
+                    <TextBox Grid.Column="1" Text="{Binding Replace}" />
+                </Grid>
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <CheckBox IsChecked="{Binding DryRun}">Dry run</CheckBox>
+                    <CheckBox IsChecked="{Binding SpecifyTextureSlots}">Specify texture slots</CheckBox>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Spacing="6" IsVisible="{Binding SpecifyTextureSlots}">
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">0</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot0}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">1</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot1}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">2</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot2}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">3</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot3}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">4</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot4}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">5</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot5}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">6</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot6}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">7</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot7}" /></Grid>
+                    <Grid RowDefinitions="Auto,Auto"><Label Grid.Row="0">8</Label><CheckBox Grid.Row="1" IsChecked="{Binding Slot8}" /></Grid>
+                </StackPanel>
+                <Separator />
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" Spacing="6" DockPanel.Dock="Bottom" Margin="0 12 0 0">
+                <Button Command="{Binding CloseCommand}">Close</Button>
+                <Button Command="{Binding StartCommand}">Start</Button>
+            </StackPanel>
+            
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="6" Padding="6">
+                <TextBlock TextTrimming="" Text="{Binding Result}" />
+            </Border>
+        </DockPanel>
+    </Panel>
+
+</Window>
