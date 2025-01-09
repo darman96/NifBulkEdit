@@ -13,6 +13,8 @@
     <ItemGroup>
         <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaXaml Remove="App.axaml" />
+        <AvaloniaResource Include="App.axaml" />
     </ItemGroup>
 
     <ItemGroup>
