@@ -79,7 +79,7 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: Publish
-      run: dotnet publish $env:Publish_Project -o publish -c $env:Configuration --no-build --self-contained -r win-x64 -p:AssemblyName=NifBulkEditApp -p:PublishSingleFile=true
+      run: dotnet publish $env:Publish_Project -o publish -c $env:Configuration --no-build --self-contained -r win-x64 -p:PublishSingleFile=true
       env:
         Configuration: ${{ matrix.configuration }}
 
