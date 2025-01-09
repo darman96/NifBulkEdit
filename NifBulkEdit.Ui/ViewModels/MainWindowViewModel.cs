@@ -34,8 +34,10 @@ public partial class MainWindowViewModel(IApplicationService app, IFileService f
     [ObservableProperty] private bool slot8;
 
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(StartCommand))]
     private List<string> loadedFiles = [];
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(StartCommand))]
     private string outputDirectory = string.Empty;
 
     [ObservableProperty] private string result = string.Empty;
@@ -74,7 +76,7 @@ public partial class MainWindowViewModel(IApplicationService app, IFileService f
         }
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(canStart))]
     private void Start()
     {
         var slotMask = this.SpecifyTextureSlots
@@ -86,6 +88,8 @@ public partial class MainWindowViewModel(IApplicationService app, IFileService f
         Result = string.Join(Environment.NewLine, ops.Select(op => $"{op.FilePath} - {op.Mesh.Name.String}[{op.TextureIndex}]: {op.Original} -> {op.Replacement}"));
     }
 
+    private bool canStart() => this.LoadedFiles.Any() && !string.IsNullOrWhiteSpace(this.OutputDirectory);
+    
     [RelayCommand]
     private void Close() => app.Shutdown();
 }
