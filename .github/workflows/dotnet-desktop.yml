@@ -74,7 +74,7 @@ jobs:
       run: dotnet restore $env:Solution_Name -r win-x64
 
     - name: Build
-      run: dotnet build $env:Solution_Name -c $env:Configuration -r win-x64 --no-restore
+      run: dotnet build $env:Publish_Project -c $env:Configuration -r win-x64 --no-restore
       env:
         Configuration: ${{ matrix.configuration }}
 
